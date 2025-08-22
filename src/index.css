@@ -6,42 +6,55 @@
 
 @layer base {
   :root {
-    --background: 245 25% 97%;
-    --foreground: 220 15% 20%;
+    /* Dark theme with neon and soothing blue tones */
+    --background: 222 84% 4.9%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 220 15% 20%;
+    --card: 222 84% 6%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 15% 20%;
+    --popover: 222 84% 6%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 0 0% 100%;
-    --primary-glow: 220 100% 70%;
+    --primary: 200 100% 70%;
+    --primary-foreground: 222 84% 4.9%;
+    --primary-glow: 200 100% 80%;
 
-    --secondary: 240 5% 94%;
-    --secondary-foreground: 220 15% 25%;
+    --secondary: 215 28% 17%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 240 5% 96%;
-    --muted-foreground: 220 5% 45%;
+    --muted: 215 28% 15%;
+    --muted-foreground: 217 10% 64%;
 
-    --accent: 270 95% 65%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 280 100% 70%;
+    --accent-foreground: 222 84% 4.9%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
-    --ring: 217 91% 60%;
+    --border: 215 28% 18%;
+    --input: 215 28% 18%;
+    --ring: 200 100% 70%;
 
-    /* Portfolio-specific design tokens */
-    --hero-gradient: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(270 95% 65%) 100%);
-    --card-gradient: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(240 5% 98%) 100%);
-    --glass-bg: hsla(0 0% 100% / 0.8);
-    --shadow-soft: 0 4px 20px -2px hsl(217 91% 60% / 0.15);
-    --shadow-hover: 0 8px 30px -4px hsl(217 91% 60% / 0.25);
-    --shadow-glass: 0 8px 32px 0 hsl(220 15% 20% / 0.1);
+    /* Dark portfolio design tokens with neon and blue */
+    --hero-gradient: linear-gradient(135deg, hsl(222 84% 4.9%) 0%, hsl(215 28% 8%) 50%, hsl(200 100% 15%) 100%);
+    --neon-gradient: linear-gradient(45deg, hsl(200 100% 70%) 0%, hsl(280 100% 70%) 50%, hsl(320 100% 70%) 100%);
+    --card-gradient: linear-gradient(145deg, hsl(222 84% 6%) 0%, hsl(215 28% 9%) 100%);
+    --glass-bg: hsla(222 84% 6% / 0.8);
+    --glass-border: hsla(200 100% 70% / 0.2);
+    
+    /* Neon glow effects */
+    --neon-blue: 200 100% 70%;
+    --neon-purple: 280 100% 70%;
+    --neon-pink: 320 100% 70%;
+    --neon-cyan: 180 100% 70%;
+    
+    /* Shadows with neon glow */
+    --shadow-soft: 0 4px 20px -2px hsl(222 84% 4.9% / 0.5);
+    --shadow-hover: 0 8px 30px -4px hsl(200 100% 70% / 0.3);
+    --shadow-neon: 0 0 20px hsl(200 100% 70% / 0.5);
+    --shadow-glass: 0 8px 32px 0 hsl(222 84% 4.9% / 0.8);
+    --shadow-neon-strong: 0 0 40px hsl(200 100% 70% / 0.6), 0 0 80px hsl(280 100% 70% / 0.3);
     
     /* Animation variables */
     --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -121,19 +134,38 @@
 }
 
 @layer components {
-  /* Portfolio-specific component styles */
+  /* Dark portfolio component styles with neon accents */
   .hero-gradient {
     background: var(--hero-gradient);
+    position: relative;
+  }
+  
+  .hero-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--neon-gradient);
+    opacity: 0.1;
+    pointer-events: none;
   }
   
   .card-gradient {
     background: var(--card-gradient);
+    border: 1px solid var(--glass-border);
   }
   
   .glass-effect {
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
-    border: 1px solid hsl(var(--border));
+    border: 1px solid var(--glass-border);
+  }
+  
+  .neon-glow {
+    box-shadow: var(--shadow-neon);
+  }
+  
+  .neon-glow-strong {
+    box-shadow: var(--shadow-neon-strong);
   }
   
   .shadow-soft {
@@ -161,6 +193,11 @@
     box-shadow: var(--shadow-hover);
   }
   
+  .hover-neon:hover {
+    box-shadow: var(--shadow-neon-strong);
+    transform: translateY(-4px);
+  }
+  
   .scroll-reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -170,5 +207,49 @@
   .scroll-reveal.revealed {
     opacity: 1;
     transform: translateY(0);
+  }
+  
+  /* Neon text effect */
+  .neon-text {
+    color: hsl(var(--neon-blue));
+    text-shadow: 
+      0 0 5px hsl(var(--neon-blue) / 0.5),
+      0 0 10px hsl(var(--neon-blue) / 0.5),
+      0 0 20px hsl(var(--neon-blue) / 0.5);
+  }
+  
+  .neon-border {
+    border: 1px solid hsl(var(--neon-blue));
+    box-shadow: 
+      0 0 5px hsl(var(--neon-blue) / 0.5),
+      inset 0 0 5px hsl(var(--neon-blue) / 0.2);
+  }
+  
+  /* Animated neon pulse */
+  .neon-pulse {
+    animation: neon-pulse 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes neon-pulse {
+    from {
+      text-shadow: 
+        0 0 5px hsl(var(--neon-blue) / 0.5),
+        0 0 10px hsl(var(--neon-blue) / 0.5),
+        0 0 20px hsl(var(--neon-blue) / 0.5);
+    }
+    to {
+      text-shadow: 
+        0 0 10px hsl(var(--neon-blue) / 0.8),
+        0 0 20px hsl(var(--neon-blue) / 0.8),
+        0 0 40px hsl(var(--neon-blue) / 0.8);
+    }
+  }
+  
+  /* Particle background effect */
+  .particle-bg {
+    background-image: 
+      radial-gradient(circle at 20% 80%, hsl(var(--neon-blue) / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsl(var(--neon-purple) / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, hsl(var(--neon-pink) / 0.05) 0%, transparent 50%);
   }
 }

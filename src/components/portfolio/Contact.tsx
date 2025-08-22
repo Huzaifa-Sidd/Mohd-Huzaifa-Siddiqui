@@ -45,11 +45,14 @@ const Contact = () => {
   ];
 
   return (
-    <section className="py-20 bg-secondary/30">
-      <div className="container mx-auto px-6">
+    <section className="py-20 bg-secondary/10 relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0 particle-bg opacity-20" />
+      
+      <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Let's <span className="text-primary">Connect</span>
+            Let's <span className="neon-text">Connect</span>
           </h2>
           
           <p className="text-xl text-muted-foreground mb-12 leading-relaxed">
@@ -65,9 +68,9 @@ const Contact = () => {
                 <div key={index} className="group">
                   <a 
                     href={item.href}
-                    className="flex flex-col items-center p-6 bg-card rounded-xl shadow-soft hover:shadow-hover transition-all duration-300 hover-lift"
+                    className="flex flex-col items-center p-6 card-gradient rounded-xl shadow-soft hover:shadow-neon transition-all duration-300 hover-neon group"
                   >
-                    <div className="bg-primary/10 p-4 rounded-full mb-4 group-hover:bg-primary/20 transition-colors duration-300">
+                    <div className="bg-primary/10 border border-primary/30 p-4 rounded-full mb-4 group-hover:bg-primary/20 group-hover:neon-glow transition-all duration-300">
                       <IconComponent className="h-6 w-6 text-primary" />
                     </div>
                     <h3 className="font-semibold text-lg mb-2">{item.label}</h3>
@@ -87,9 +90,9 @@ const Contact = () => {
               return (
                 <Button
                   key={index}
-                  variant="outline"
+                  variant="neon"
                   size="icon"
-                  className={`h-12 w-12 rounded-full hover:scale-110 transition-all duration-300 ${link.color}`}
+                  className={`h-12 w-12 rounded-full hover:scale-110 transition-all duration-300 hover-neon ${link.color}`}
                   onClick={() => window.open(link.href, '_blank')}
                 >
                   <IconComponent className="h-5 w-5" />
@@ -99,15 +102,16 @@ const Contact = () => {
           </div>
 
           {/* CTA */}
-          <div className="bg-card p-8 rounded-xl shadow-soft">
+          <div className="card-gradient p-8 rounded-xl shadow-soft neon-border">
             <h3 className="text-2xl font-bold mb-4">Ready to start a project?</h3>
             <p className="text-muted-foreground mb-6">
               Let's discuss your ideas and bring them to life together.
             </p>
             <Button 
+              variant="hero"
               size="lg"
               onClick={() => window.open('mailto:your.email@example.com?subject=Project Inquiry', '_blank')}
-              className="shadow-soft hover:shadow-hover transition-all duration-300"
+              className="hover-neon"
             >
               <Mail className="mr-2 h-5 w-5" />
               Get In Touch

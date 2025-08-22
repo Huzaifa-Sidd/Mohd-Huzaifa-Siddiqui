@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import ProjectCard from "./ProjectCard";
+import { Button } from "@/components/ui/button";
 
 const Projects = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -76,15 +77,18 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" ref={sectionRef} className="py-20 bg-background">
-      <div className="container mx-auto px-6">
+    <section id="projects" ref={sectionRef} className="py-20 bg-background relative overflow-hidden">
+      {/* Background particles */}
+      <div className="absolute inset-0 particle-bg opacity-30" />
+      
+      <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16 scroll-reveal">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Featured <span className="text-primary">Projects</span>
+            Featured <span className="neon-text">Projects</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             A collection of my recent work showcasing different technologies, design approaches, 
-            and problem-solving skills. Each project represents a unique challenge and learning experience.
+            and problem-solving skills. Each project represents a <span className="text-primary font-semibold">unique challenge</span> and learning experience.
           </p>
         </div>
 
@@ -105,12 +109,14 @@ const Projects = () => {
           <p className="text-muted-foreground mb-6">
             Want to see more? Check out my GitHub for additional projects and contributions.
           </p>
-          <button 
+          <Button
+            variant="neon"
+            size="lg"
             onClick={() => window.open('https://github.com/yourusername', '_blank')}
-            className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors duration-300 shadow-soft hover:shadow-hover"
+            className="hover-neon"
           >
             View All Projects on GitHub
-          </button>
+          </Button>
         </div>
       </div>
     </section>

@@ -21,7 +21,7 @@ const ProjectCard = ({
   featured = false 
 }: ProjectCardProps) => {
   return (
-    <div className={`group relative bg-card rounded-xl overflow-hidden shadow-soft hover:shadow-hover transition-all duration-500 hover-lift ${
+    <div className={`group relative card-gradient rounded-xl overflow-hidden shadow-soft hover:shadow-neon transition-all duration-500 hover-neon ${
       featured ? 'md:col-span-2 md:row-span-2' : ''
     }`}>
       {/* Project Image */}
@@ -31,7 +31,7 @@ const ProjectCard = ({
           alt={title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
         
         {/* Action buttons overlay */}
         <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
@@ -39,7 +39,7 @@ const ProjectCard = ({
             <Button 
               size="sm" 
               variant="secondary"
-              className="shadow-glass"
+              className="neon-border hover:neon-glow"
               onClick={() => window.open(liveUrl, '_blank')}
             >
               <ExternalLink className="h-4 w-4" />
@@ -49,7 +49,7 @@ const ProjectCard = ({
             <Button 
               size="sm" 
               variant="secondary"
-              className="shadow-glass"
+              className="neon-border hover:neon-glow"
               onClick={() => window.open(githubUrl, '_blank')}
             >
               <Github className="h-4 w-4" />
@@ -59,7 +59,7 @@ const ProjectCard = ({
 
         {featured && (
           <div className="absolute top-4 left-4">
-            <span className="bg-accent text-accent-foreground px-3 py-1 rounded-full text-sm font-medium shadow-glass">
+            <span className="bg-gradient-to-r from-accent to-primary text-white px-3 py-1 rounded-full text-sm font-medium neon-glow backdrop-blur-sm">
               Featured
             </span>
           </div>
@@ -81,7 +81,7 @@ const ProjectCard = ({
           {technologies.map((tech, index) => (
             <span 
               key={index}
-              className="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-sm font-medium"
+              className="bg-secondary/50 text-primary border border-primary/30 px-3 py-1 rounded-full text-sm font-medium hover:neon-glow transition-all duration-300"
             >
               {tech}
             </span>
